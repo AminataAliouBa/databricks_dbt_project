@@ -7,11 +7,13 @@ def transform_products(df):
     df = clean_null_and_esc(df)
     df = normalize_ingredients(df)
 
-    df = df.withColumn("rate", F.col("rate").try_cast("int"))\
+    df = df.df = df.withColumn("rate",F.when(F.col("rate").rlike(r"^\d+$"), F.col("rate").cast("int")).otherwise(0))\
+            .withColumn("rate", F.col("rate").cast("int"))\
             .select([F.upper(F.col(c)).alias(c) for c in df.columns])\
             .filter(F.col("name").isNotNull())\
             .filter(F.col("name") != "NULL")\
             .withColumn( "brand",F.when(F.length(F.trim(F.col("brand"))) == 0, "UNKNOWN").otherwise(F.col("brand")))\
             .distinct()\
+            .dropDuplicates(["name", "brand", "size", "price"])\
             .withColumn("product_id", F.expr("uuid()"))
     return df
