@@ -1,4 +1,4 @@
-# Pipeline PySpark pour la normalisation des produits cosmétiques – Databricks
+# Pipeline PySpark pour la normalisation des produits cosmétiques – Databricks (ETL + Visualisation)
 
 ## Description
 
@@ -12,31 +12,23 @@
 
 # Techniques utilisées
 
-Databricks
-PySpark
-Delta Lake
-Spark SQL
-Régex Python
-Pipelines de transformation
+- Databricks
+- PySpark
+- Delta Lake
+- Spark SQL
+- Régex Python
+- Pipelines de transformation
+- Dashboard Databricks
 
 # Architecture
 
-Ajoute un petit schéma simple (flux → transformation → tables Delta)
+Ajoute un petit schéma simple (flux → transformation → tables Delta → Dashboard)
 
 # Objectif du pipeline
 
-Créer un modèle produit / ingrédient exploitable par PowerBI / Looker.
+Créer un modèle produit / ingrédient exploitable et des KPI via un dashboard
+![pipeline](lineage_pipeline.png)
 
-```text
-databricks_pipeline/
-├── README.md
-├── src/
-│   ├── ingestion/
-│   │   └── load_raw.py
-│   ├── transformations/
-│   │   ├── clean_products.py
-│   │   └── explode_ingredients.py
-│   ├── utils/
-│   │   └── cleaning_utils.py
-│   └── run.py
-```
+
+# Dashboard interactif
+![db](dashboard_databricks.png)
